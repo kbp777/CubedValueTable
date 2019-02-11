@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+    <head> 
+        <meta charset="utf-8" />
+		<title>Exercise 1</title>	
+	</head>
+
+    <body>
+        <script>
+			  "use strict";
+			 
+			  var inputArray = [];
+			  
+			do {
+				var prompt1 = prompt("Enter a numerical value or 'done': ");
+				var input = new Number(prompt1);
+				var i;
+				console.log("This is the input: " + input);
+				
+				if(!isNaN(input.valueOf()) && input instanceof Number){
+					
+					inputArray.push(input);
+					//adding number to inputArray
+				}else{
+					if(prompt1 == "done"){
+						//do nothing
+					}else{
+						alert("Error: The value entered is not a number.");
+					}
+					
+				}
+				
+				
+			}while(prompt1 != "done");
+	            
+			
+	        var body = document.getElementsByTagName("body")[0];
+	        var title = document.createElement("div");
+	        var titleText = document.createTextNode("Cubed Values Table");
+	        title.appendChild(titleText);
+	       	var table = document.createElement("table");
+	        table.setAttribute("border", "3");
+	       	var tableHeader = document.createElement("theader");
+	        var tableBody = document.createElement("tbody");
+	        var tableSum = document.createElement("tsum");
+	        var sum = 0;
+	        
+	        for(var i = 0; i < 3; i++){
+	        	var cell = document.createElement("td");
+	        	var cellText;
+	        	if(i == 0){
+	        		cellText = document.createTextNode("Count");
+	        	}else if(i == 1){
+	        		cellText = document.createTextNode("Value");
+	        	}else{
+	        		cellText = document.createTextNode("Cubed Value");
+	        	}
+	        	cell.appendChild(cellText);
+	        	tableHeader.appendChild(cell);
+	        }//creates table header
+	        
+	        
+	        for(var x = 0; x < inputArray.length; x++){
+	        	var row = document.createElement("tr");
+	        	for(var y = 0; y < 3; y++ ){
+	        		var cell1 = document.createElement("td");
+	        		var cellText1;
+	        		var currCount = x + 1;
+	        		if(y == 0){//create Count text for corresponding input in inputArray
+	        			cellText1 = document.createTextNode(currCount);
+	        		}else if(y == 1){//create Value text for corresponding input in inputArray
+	        			cellText1 = document.createTextNode(inputArray[x]);
+	        		}else{//create Cubed Value text for corresponding input in inputArray
+	        			cellText1 = document.createTextNode(inputArray[x]*inputArray[x]*inputArray[x]);
+	        		}
+	        		cell1.appendChild(cellText1);
+	        		row.appendChild(cell1);
+	        	}
+	        	tableBody.appendChild(row);
+	        	row.setAttribute("align", "left");
+	        }//creates the table body using input from the inputArray
+	        
+	        for(var i = 0; i < inputArray.length; i++){
+	        	sum += inputArray[i];
+	        }//finding sum of all numbers in inputArray
+	        
+	       for(var a = 0; a < 3; a++){
+	    	   var cell2 = document.createElement("td");
+	    	   var cellText2;
+	    	   if(a == 0){
+	    		   cellText2 = document.createTextNode("the sum of all values entered");
+	    	   }else if(a == 1){
+	    		   cellText2 = document.createTextNode(sum);
+	    	   }else{
+	    		   cellText2 = document.createTextNode("");
+	    	   }
+	    	   cell2.appendChild(cellText2);
+	    	   tableSum.appendChild(cell2);
+	    	   if(a == 2){
+	    		   cell2.setAttribute("width", "50");
+	    	   }//create blank cell
+	        
+	    	   tableSum.setAttribute("align", "left");
+	       }//creating the sum of all values in inputArray row
+	       
+		   tableBody.appendChild(tableSum);
+	       tableHeader.appendChild(tableBody);
+	       table.appendChild(tableHeader);
+	       body.appendChild(title);
+	       body.appendChild(table);
+	      // title.setAttribute("align","center");
+	       table.setAttribute("border","10");
+        </script>
+    </body>
+</html>
